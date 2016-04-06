@@ -52,16 +52,16 @@ var TILESET_COUNT_Y = 14;
 
 function drawMap()
 {
-	for(var layerldx = 0; layerldx < LAYER_COUNT; layerldx++)
+	for(var layerIdx = 0; layerIdx < LAYER_COUNT; layerIdx++)
 	{
 		var idx = 0;
-		for(var y = 0; y < level1.layers[layerldx].height; y++)
+		for(var y = 0; y < level1.layers[layerIdx].height; y++)
 		{
-			for(var x = 0; x < level1.layers[layerldx].width; x++)
+			for(var x = 0; x < level1.layers[layerIdx].width; x++)
 			{
-				if(level1.layers[layerldx].data[idx] != 0)
+				if(level1.layers[layerIdx].data[idx] != 0)
 				{
-					var tileIndex = level1.layers[layerldx].data[idx] - 1;
+					var tileIndex = level1.layers[layerIdx].data[idx] - 1;
 					var sx = TILESET_PADDING + (tileIndex % TILESET_COUNT_X) * (TILESET_TILE + TILESET_SPACING);
 					var sy = TILESET_PADDING + (Math.floor(tileIndex / TILESET_COUNT_Y)) * (TILESET_TILE + TILESET_SPACING);
 					context.drawImage(tileset, sx, sy, TILESET_TILE, TILESET_TILE, x*TILE, (y-1)*TILE, TILESET_TILE,TILESET_TILE);
