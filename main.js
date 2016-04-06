@@ -38,7 +38,7 @@ var tileset = document.createElement("img");
 tileset.src = "tileset.png";
 
 
-var LAYER_COUNT = 2;
+var LAYER_COUNT = 3;
 var MAP = { tw: 60, th: 15 };
 var TILE = 35;
 var TILESET_TILE = TILE * 2;
