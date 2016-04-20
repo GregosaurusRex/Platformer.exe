@@ -30,9 +30,6 @@ var fpsTime = 0;
 var chuckNorris = document.createElement("img");
 chuckNorris.src = "hero.png";
 
-var player = new Player();
-var keyboard = new Keyboard();
-
 
 var tileset = document.createElement("img");
 tileset.src = "tileset.png";
@@ -63,6 +60,9 @@ var FRICTION = MAXDX * 6;
 
 var JUMP = METER * 1500;
 
+
+var player = new Player();
+var keyboard = new Keyboard();
 
 var cells = [];
 function initialize() {
