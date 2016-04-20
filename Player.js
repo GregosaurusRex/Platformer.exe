@@ -1,7 +1,7 @@
 var Player = function() {
 
 	this.image = document.createElement("img");
-	this.position = new Vector2();
+	this.position = new Vector2(0, 0);
 	this.position.set( 9*TILE, 0*TILE );
 
 	this.width = 159;

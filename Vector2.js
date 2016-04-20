@@ -4,8 +4,8 @@ var Vector2 = function (nX, nY)
 	this.y = nY;
 };
 
-Vector2.prototype.set = function(x, y)
+Vector2.prototype.set = function(nX, nY)
 {
-	this.x = x;
-	this.y = y;
+	this.x = nX;
+	this.y = nY;
 };
