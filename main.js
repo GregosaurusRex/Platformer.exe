@@ -47,12 +47,16 @@ var TILESET_SPACING = 2;
 var TILESET_COUNT_X = 14;
 var TILESET_COUNT_Y = 14;
 
+var player = new Player();
+var keyboard = new Keyboard();
 
 var METER = TILE;
 
 var GRAVITY = METER * 9.8 * 6;
 
 var MAXDX = METER * 15;
+
+var MAXDY = METER * 15;
 
 var ACCEL = MAXDX * 2;
 
@@ -61,8 +65,7 @@ var FRICTION = MAXDX * 6;
 var JUMP = METER * 1500;
 
 
-var player = new Player();
-var keyboard = new Keyboard();
+
 
 var cells = [];
 function initialize() {
@@ -112,7 +115,7 @@ function cellAtTileCoord(layer, tx, ty)
 
 function tileToPixel(tile)
 {
-	return tile * TITLE;
+	return tile * TILE;
 };
 
 function pixelToTile(pixel)
