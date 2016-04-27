@@ -1,11 +1,11 @@
-var Vector2 = function (nX, nY)
+var Vector2 = function ()
 {
-	this.x = nX;
-	this.y = nY;
+	this.x = 0;
+	this.y = 0;
 };
 
-Vector2.prototype.set = function(nX, nY)
+Vector2.prototype.set = function()
 {
-	this.x = nX;
-	this.y = nY;
+	this.x = 0;
+	this.y = 0;
 };

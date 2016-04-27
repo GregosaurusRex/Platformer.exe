@@ -54,7 +54,7 @@ var METER = TILE;
 
 var GRAVITY = METER * 9.8 * 6;
 
-var MAXDX = METER * 15;
+var MAXDX = METER * 10;
 
 var MAXDY = METER * 15;
 

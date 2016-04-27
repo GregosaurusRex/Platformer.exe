@@ -1,7 +1,18 @@
+var LEFT = 0;
+var RIGHT = 1;
+
+var ANIM_IDLE_LEFT = 0;
+var ANIM_JUMP_LEFT = 1;
+var ANIM_WALK_LEFT = 2;
+var ANIM_IDLE_RIGHT = 3;
+var ANIM_JUMP_RIGHT = 4;
+var ANIM_WALK_RIGHT = 5;
+var ANIM_MAX = 6;
+
 var Player = function() {
 
 	this.image = document.createElement("img");
-	this.position = new Vector2(0, 0);
+	this.position = new Vector2();
 	this.position.set( 9*TILE, 0*TILE );
 
 	this.width = 159;
@@ -11,7 +22,7 @@ var Player = function() {
 	this.offset.set(-55, -87);
 
 	this.velocity = new Vector2();
-	this.velocity.set(0, 0);
+	//this.velocity.set();
 
 	this.falling = true;
 	this.jumping = false;
@@ -117,8 +128,11 @@ Player.prototype.update = function(deltaTime)
 Player.prototype.draw = function()
 {
 	context.save();
-		context.translate(this.x, this.y);
+		context.translate(this.position.x, this.position.y);
 		context.rotate(this.rotation);
 		context.drawImage(this.image, -this.width/2, -this.height/2);
 	context.restore();
+
+
 }
+
