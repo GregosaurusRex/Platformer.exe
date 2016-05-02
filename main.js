@@ -62,7 +62,7 @@ var ACCEL = MAXDX * 2;
 
 var FRICTION = MAXDX * 6;
 
-var JUMP = METER * 1500;
+var JUMP = METER * 2500;
 
 
 
