@@ -67,8 +67,9 @@ Player.prototype.update = function(deltaTime)
 		right = true;
 		this.direction = RIGHT;
 		if(this.sprite.currentAnimation != ANIM_WALK_RIGHT) {
-			this.sprite.setAnimation(ANIM_WALK_RIGHT);
+			this.sprite.setAnimation(ANIM_WALK_RIGHT); 
 		}
+	}
 		else {
 			if(this.jumping == false && this.falling == false)
 			{
@@ -84,8 +85,8 @@ Player.prototype.update = function(deltaTime)
 				}
 			}
 		}
-	}
 	
+
 	if(keyboard.isKeyDown(keyboard.KEY_SPACE) == true) {
 		jump = true;
 		if(left == true) {
