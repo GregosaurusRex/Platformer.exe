@@ -191,7 +191,7 @@ Player.prototype.draw = function()
 		context.drawImage(this.image, -this.width/2, -this.height/2);
 	context.restore(); */
 
-	this.sprite.draw(context, this.position.x + offsetX, this.position.y + offsetY);
-	//context.fillRect(this.position.x, this.position.y, 40, 40);
+	this.sprite.draw(context, this.position.x - worldOffsetX, this.position.y);
+	context.fillRect(this.position.x, this.position.y, 40, 40);
 }
 
