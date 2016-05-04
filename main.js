@@ -18,10 +18,14 @@ function getDeltaTime()
 	return deltaTime;
 }
 
+var heartImage = document.createElement("img");
+heartImage.src = "heartImage.png"
 
 var SCREEN_WIDTH = canvas.width;
 var SCREEN_HEIGHT = canvas.height;
 
+var score = 0;
+var lives = 3;
 
 var fps = 0;
 var fpsCount = 0;
@@ -132,7 +136,6 @@ function bound(value, min, max)
 	return value;
 }
 
-
 function drawMap()
 {
 	for(var layerIdx = 0; layerIdx < LAYER_COUNT; layerIdx++)
@@ -162,6 +165,13 @@ function run()
 	context.fillStyle = "#ccc";
 	context.fillRect(0, 0, canvas.width, canvas.height);
 
+	context.fillStyle = "white";
+	context.font="32px Comic Sans MS";
+	var scoreText = "Score: " + score;
+	context.fillText(scoreText, SCREEN_WIDTH - 130, 35);
+
+
+
 	var deltaTime = getDeltaTime();
 
 	drawMap();
@@ -169,7 +179,17 @@ function run()
 	player.update(deltaTime);
 	player.draw();
 
-	
+	//context.fillStyle = "black";
+	//context.fillRect();
+
+	context.fillStyle = "red";
+	context.font = "30px Comic Sans MS"
+	context.fillText("Health", 55, 450)
+
+		for(var i = 0; i < lives; i++)
+	{
+		context.drawImage(heartImage, 20 + ((heartImage.width + 2) * i), 460);
+	}
 
 	fpsTime += deltaTime;
 	fpsCount++;

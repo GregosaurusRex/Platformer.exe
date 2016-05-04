@@ -60,13 +60,15 @@ Player.prototype.update = function(deltaTime)
 	if(keyboard.isKeyDown(keyboard.KEY_LEFT) == true) {
 		left = true;
 		this.direction = LEFT;
-		if(this.sprite.currentAnimation != ANIM_WALK_LEFT)
+		if(this.sprite.currentAnimation != ANIM_WALK_LEFT &&
+			this.jumping == false)
 			this.sprite.setAnimation(ANIM_WALK_LEFT);
 	}
 	else if(keyboard.isKeyDown(keyboard.KEY_RIGHT) == true) {
 		right = true;
 		this.direction = RIGHT;
-		if(this.sprite.currentAnimation != ANIM_WALK_RIGHT) {
+		if(this.sprite.currentAnimation != ANIM_WALK_RIGHT &&
+			this.jumping == false) {
 			this.sprite.setAnimation(ANIM_WALK_RIGHT); 
 		}
 	}
@@ -117,6 +119,10 @@ Player.prototype.update = function(deltaTime)
 	{
 		ddy = ddy - JUMP;
 		this.jumping = true;
+		if(this.direction == LEFT)
+			this.sprite.setAnimation(ANIM_JUMP_LEFT)
+		else
+			this.sprite.setAnimation(ANIM_JUMP_RIGHT)
 	}
 
 
