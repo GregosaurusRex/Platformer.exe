@@ -136,8 +136,11 @@ function bound(value, min, max)
 	return value;
 }
 
+var worldOffsetX = 0;
+
 function drawMap()
 {
+	var startX = -1;
 	var maxTiles = Math.floor(SCREEN_WIDTH / TILE) + 2;
 	var tileX = pixelToTile(player.position.x);
 	var offsetX = TILE + Math.floor(player.position.x % TILE);
@@ -155,7 +158,7 @@ function drawMap()
 		offsetX = TILE;
 	}
 	
-	worldOffsetX = startX * offsetX;
+	worldOffsetX = startX * TILE + offsetX;
 	
 	for(var layerIdx = 0; layerIdx < LAYER_COUNT; layerIdx++)
 	{
