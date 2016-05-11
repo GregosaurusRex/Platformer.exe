@@ -192,6 +192,6 @@ Player.prototype.draw = function()
 	context.restore(); */
 
 	this.sprite.draw(context, this.position.x - worldOffsetX, this.position.y);
-	context.fillRect(this.position.x, this.position.y, 40, 40);
+	
 }
 

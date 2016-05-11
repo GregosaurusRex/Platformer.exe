@@ -56,7 +56,7 @@ var keyboard = new Keyboard();
 
 var METER = TILE;
 
-var GRAVITY = METER * 9.8 * 6;
+var GRAVITY = METER * 9.8 * 4;
 
 var MAXDX = METER * 10;
 
