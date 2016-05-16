@@ -39,10 +39,11 @@ var tileset = document.createElement("img");
 tileset.src = "tileset.png";
 
 
-var LAYER_COUNT = 3;
+var LAYER_COUNT = 4;
 var LAYER_BACKGROUND = 0;
 var LAYER_PLATFORMS = 1;
 var LAYER_LADDERS = 2;
+var LAYER_OBJECT_TRIGGERS = 4;
 var MAP = { tw: 60, th: 15 };
 var TILE = 35;
 var TILESET_TILE = TILE * 2;
@@ -236,6 +237,25 @@ var sfxFire;
 initialize();
 
 (function() {
+	
+	cells[LAYER_OBJECT_TRIGGERS] = [];
+	idx = 0;
+	for(var y = 0; y < level1.layers[LAYER_OBJECT_TRIGGERS].height; y++) {
+		cells[LAYER_OBJECT_TRIGGERS][y] = [];
+		for(var x = 0; x < level1.layers[LAYER_OBJECT_TRIGGERS].width; x++) {
+			if(level1.layers[LAYER_OBJECT_TRIGGERS].data[idx] != 0) {
+				cells[LAYER_OBJECT_TRIGGERS][y][x] = 1;
+				cells[LAYER_OBJECT_TRIGGERS][y-1][x] = 1;
+				cells[LAYER_OBJECT_TRIGGERS][y-1][x+1] = 1;
+				cells[LAYER_OBJECT_TRIGGERS][y][x+1] = 1;
+			}
+			else if(cells[LAYER_OBJECT_TRIGGERS][y][x] != 1) {
+				cells[LAYER_OBJECT_TRIGGERS][y][x] = 0;
+			}
+			idx++;
+		}
+	}
+	
   var onEachFrame;
   if (window.requestAnimationFrame) {
     onEachFrame = function(cb) {
@@ -258,7 +278,7 @@ initialize();
 		  urls: ["background.ogg"],
 		  loop: true,
 		  buffer: true,
-		  volume: 0.5
+		  volume: 0.25
 	  } );
 	  musicBackground.play();
 	  

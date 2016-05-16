@@ -193,6 +193,11 @@ Player.prototype.update = function(deltaTime)
 		}
 	}
 	
+	if(cellAtTileCoord(LAYER_OBJECT_TRIGGERS, tx, ty) == true)
+	{
+		
+	}
+	
 }
 
 var offsetX = -70;
