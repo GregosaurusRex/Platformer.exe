@@ -207,7 +207,7 @@ function runSplash(deltaTime)
 
 
 
-function runGame()
+function runGame(deltaTime)
 {
 	context.fillStyle = "#ccc";
 	context.fillRect(0, 0, canvas.width, canvas.height);
@@ -219,7 +219,7 @@ function runGame()
 
 
 
-	var deltaTime = getDeltaTime();
+	//var deltaTime = getDeltaTime();
 
 	drawMap();
 
@@ -251,6 +251,18 @@ function runGame()
 	context.font = "14px Arial";
 	context.fillText("FPS: " + fps, 5, 20, 100);
 	
+	
+}
+
+function runGameOver(deltaTime)
+{
+	
+}
+
+
+function runSwitch()
+{
+	var deltaTime = getDeltaTime();
 	switch(gameState)
 	{
 		case STATE_SPLASH:
@@ -264,14 +276,27 @@ function runGame()
 			break;
 	}
 }
-
-function runGameOver(deltaTime)
-{
-	
-}
-
 var musicBackground;
 var sfxFire;
+
+musicBackground = new Howl(
+	  {
+		  urls: ["background.ogg"],
+		  loop: true,
+		  buffer: true,
+		  volume: 0.25
+	  } );
+	  musicBackground.play();
+	  
+	  sfxFire = new Howl (
+		  {
+			  urls: ["fireEffect.ogg"],
+			  buffer: true,
+			  volume: 1,
+			  onend: function() {
+				  isSfxPlaying = false;
+			  }
+		  } );
 
 initialize();
 
@@ -312,25 +337,8 @@ initialize();
     }
   }
   
-  musicBackground = new Howl(
-	  {
-		  urls: ["background.ogg"],
-		  loop: true,
-		  buffer: true,
-		  volume: 0.25
-	  } );
-	  musicBackground.play();
-	  
-	  sfxFire = new Howl (
-		  {
-			  urls: ["fireEffect.ogg"],
-			  buffer: true,
-			  volume: 1,
-			  onend: function() {
-				  isSfxPlaying = false;
-			  }
-		  } );
+  
   window.onEachFrame = onEachFrame;
 })();
 
-window.onEachFrame(runGame);
+window.onEachFrame(runSwitch);
