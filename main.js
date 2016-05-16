@@ -18,6 +18,12 @@ function getDeltaTime()
 	return deltaTime;
 }
 
+var STATE_SPLASH = 0;
+var STATE_GAME = 1;
+var STATE_GAMEOVER = 2;
+
+var gameState = STATE_SPLASH;
+
 var heartImage = document.createElement("img");
 heartImage.src = "heartImage.png"
 
@@ -43,7 +49,7 @@ var LAYER_COUNT = 4;
 var LAYER_BACKGROUND = 0;
 var LAYER_PLATFORMS = 1;
 var LAYER_LADDERS = 2;
-var LAYER_OBJECT_TRIGGERS = 4;
+var LAYER_OBJECT_TRIGGERS = 3;
 var MAP = { tw: 60, th: 15 };
 var TILE = 35;
 var TILESET_TILE = TILE * 2;
@@ -184,9 +190,24 @@ function drawMap()
 
 }
 
+var splashTimer = 3;
+function runSplash(deltaTime)
+{
+	splashTimer -= deltaTime;
+	if(splashTimer <= 0)
+	{
+		gameState = STATE_GAME;
+		return;
+	}
+	
+	context.fillStyel = "#000";
+	context.font = "24px Arial";
+	context.fillText("SPLASH SCREEN", 200, 240);
+}
 
 
-function run()
+
+function runGame()
 {
 	context.fillStyle = "#ccc";
 	context.fillRect(0, 0, canvas.width, canvas.height);
@@ -229,6 +250,24 @@ function run()
 	context.fillStyle = "#f00";
 	context.font = "14px Arial";
 	context.fillText("FPS: " + fps, 5, 20, 100);
+	
+	switch(gameState)
+	{
+		case STATE_SPLASH:
+			runSplash(deltaTime);
+			break;
+		case STATE_GAME:
+			runGame(deltaTime);
+			break;
+		case STATE_GAMEOVER:
+			runGameOver(deltaTime);
+			break;
+	}
+}
+
+function runGameOver(deltaTime)
+{
+	
 }
 
 var musicBackground;
@@ -294,4 +333,4 @@ initialize();
   window.onEachFrame = onEachFrame;
 })();
 
-window.onEachFrame(run);
+window.onEachFrame(runGame);
