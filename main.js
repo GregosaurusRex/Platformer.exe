@@ -280,9 +280,15 @@ function runGameOver(deltaTime)
 	context.fillText("YOU DIED", 120, SCREEN_HEIGHT/2);
 	context.font = "20px Arial";
 	context.fillText("You Scored:" + score, 150, 300);
+	context.fillText("Press SPACE to restart", 155, 350);
 	
 	context.font = "12px Arial";
 	context.fillText("Das a lot of decimal points :O", 150, 450)
+	
+	if(keyboard.isKeyDown(keyboard.KEY_SPACE) == true) 
+	{
+		location.reload();
+	}
 	
 }
 
@@ -339,6 +345,18 @@ function runGameWin(deltaTime)
 	context.lineWidth = 3;
 	context.strokeText("Your Score Was: " + score, 120, 200);
 	context.fillText("Your Score Was: " + score, 120, 200);
+	
+	context.font = "20px Arial";
+	context.strokeStyle = "Black";
+	context.lineWidth = 3;
+	context.strokeText("Press SPACE to restart", 120, 250);
+	context.fillStyle = "White";
+	context.fillText("Press SPACE to restart", 120, 250);
+	
+	if(keyboard.isKeyDown(keyboard.KEY_SPACE) == true) 
+	{
+		location.reload();
+	}
 }
 
 function runSwitch()
