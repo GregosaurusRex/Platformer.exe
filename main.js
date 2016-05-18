@@ -33,7 +33,7 @@ var SCREEN_HEIGHT = canvas.height;
 
 var time = getDeltaTime;
 var score = 0;
-var lives = 3;
+var lives = 1;
 
 var fps = 0;
 var fpsCount = 0;
@@ -235,15 +235,12 @@ function runGame(deltaTime)
 
 	context.fillStyle = "red";
 	context.font = "30px Comic Sans MS"
-	context.fillText("Health", 55, 450)
-
+	context.fillText("Health", 10, 450)
+	
 		for(var i = 0; i < lives; i++)
 	{
 		context.drawImage(heartImage, 20 + ((heartImage.width + 2) * i), 460);
-		if(player.y < 100)
-		{
-			i = -1;
-		}
+	
 	}
 
 	fpsTime += deltaTime;
@@ -259,18 +256,90 @@ function runGame(deltaTime)
 	context.font = "14px Arial";
 	context.fillText("FPS: " + fps, 5, 20, 100);
 	
+	if(player.position.y > 460)
+	{
+		gameState = STATE_GAMEOVER;
+		return;
+	}
 	
+	if(player.position.x > 1980)
+	{
+		gameState = STATE_GAMEWIN;
+		return;
+	}
 	
 }
 
 function runGameOver(deltaTime)
 {
+	context.fillStyle = "Black"
+	context.fillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+	
 	context.fillStyle = "#ff0000";
-	context.font = "24px Arial";
-	context.fillText("YOU DIED", 60, SCREEN_HEIGHT/2);
+	context.font = "80px Arial";
+	context.fillText("YOU DIED", 120, SCREEN_HEIGHT/2);
+	context.font = "20px Arial";
+	context.fillText("You Scored:" + score, 150, 300);
+	
+	context.font = "12px Arial";
+	context.fillText("Das a lot of decimal points :O", 150, 450)
 	
 }
 
+function runGameWin(deltaTime)
+{
+	context.fillStyle = "Red";
+	context.fillRect(0, 0, 50, 640);
+	
+	context.fillStyle = "Orange";
+	context.fillRect(50, 0, 50, 640);
+	
+	context.fillStyle = "Yellow";
+	context.fillRect(100, 0, 50, 640);
+	
+	context.fillStyle = "Green";
+	context.fillRect(150, 0, 50, 640);
+	
+	context.fillStyle = "Blue";
+	context.fillRect(200, 0, 50, 640);
+	
+	context.fillStyle = "Indigo";
+	context.fillRect(250, 0, 50, 640);
+	
+	context.fillStyle = "Violet";
+	context.fillRect(300, 0, 50, 640);
+	
+	context.fillStyle = "Red";
+	context.fillRect(350, 0, 50, 640);
+	
+	context.fillStyle = "Orange";
+	context.fillRect(400, 0, 50, 640);
+	
+	context.fillStyle = "Yellow";
+	context.fillRect(450, 0, 50, 640);
+	
+	context.fillStyle = "Green";
+	context.fillRect(500, 0, 50, 640);
+	
+	context.fillStyle = "Blue";
+	context.fillRect(550, 0, 50, 640);
+	
+	context.fillStyle = "Indigo";
+	context.fillRect(600, 0, 50, 640);
+	
+	context.font = "50px Arial";
+	context.fillStyle = "white";
+	context.fillText("You have won the game", 50, 100);
+	
+	context.strokeStyle = "Black";
+	context.lineWidth = 2;
+	context.strokeText("You have won the game", 50, 100);
+	
+	context.font = "20px Arial";
+	context.lineWidth = 3;
+	context.strokeText("Your Score Was: " + score, 120, 200);
+	context.fillText("Your Score Was: " + score, 120, 200);
+}
 
 function runSwitch()
 {
@@ -357,3 +426,6 @@ initialize();
 })();
 
 window.onEachFrame(runSwitch);
+
+
+
