@@ -21,6 +21,7 @@ function getDeltaTime()
 var STATE_SPLASH = 0;
 var STATE_GAME = 1;
 var STATE_GAMEOVER = 2;
+var STATE_GAMEWIN = 3;
 
 var gameState = STATE_SPLASH;
 
@@ -30,6 +31,7 @@ heartImage.src = "heartImage.png"
 var SCREEN_WIDTH = canvas.width;
 var SCREEN_HEIGHT = canvas.height;
 
+var time = getDeltaTime;
 var score = 0;
 var lives = 3;
 
@@ -200,9 +202,11 @@ function runSplash(deltaTime)
 		return;
 	}
 	
-	context.fillStyel = "#000";
+	context.fillStyle = "#000";
 	context.font = "24px Arial";
-	context.fillText("SPLASH SCREEN", 200, 240);
+	context.fillText("You Are About To Play The Best Game Ever", 60, SCREEN_HEIGHT/2);
+	context.font = "12px Arial";
+	context.fillText("Prepare Your Pants", 160, (SCREEN_HEIGHT/2) + 40)
 }
 
 
@@ -215,7 +219,7 @@ function runGame(deltaTime)
 	context.fillStyle = "white";
 	context.font="32px Comic Sans MS";
 	var scoreText = "Score: " + score;
-	context.fillText(scoreText, SCREEN_WIDTH - 130, 35);
+	context.fillText(scoreText, SCREEN_WIDTH - 190, 35);
 
 
 
@@ -236,6 +240,10 @@ function runGame(deltaTime)
 		for(var i = 0; i < lives; i++)
 	{
 		context.drawImage(heartImage, 20 + ((heartImage.width + 2) * i), 460);
+		if(player.y < 100)
+		{
+			i = -1;
+		}
 	}
 
 	fpsTime += deltaTime;
@@ -252,10 +260,14 @@ function runGame(deltaTime)
 	context.fillText("FPS: " + fps, 5, 20, 100);
 	
 	
+	
 }
 
 function runGameOver(deltaTime)
 {
+	context.fillStyle = "#ff0000";
+	context.font = "24px Arial";
+	context.fillText("YOU DIED", 60, SCREEN_HEIGHT/2);
 	
 }
 
@@ -273,6 +285,9 @@ function runSwitch()
 			break;
 		case STATE_GAMEOVER:
 			runGameOver(deltaTime);
+			break;
+		case STATE_GAMEWIN:
+			runGameWin(deltaTime);
 			break;
 	}
 }

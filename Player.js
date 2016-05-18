@@ -65,6 +65,7 @@ Player.prototype.update = function(deltaTime)
 		if(this.sprite.currentAnimation != ANIM_WALK_LEFT &&
 			this.jumping == false)
 			this.sprite.setAnimation(ANIM_WALK_LEFT);
+		score = score + 0.01;
 	}
 	else if(keyboard.isKeyDown(keyboard.KEY_RIGHT) == true) {
 		right = true;
@@ -73,6 +74,7 @@ Player.prototype.update = function(deltaTime)
 			this.jumping == false) {
 			this.sprite.setAnimation(ANIM_WALK_RIGHT); 
 		}
+		score = score + 0.01;
 	}
 		else {
 			if(this.jumping == false && this.falling == false)
@@ -110,6 +112,7 @@ Player.prototype.update = function(deltaTime)
 	if(keyboard.isKeyDown(keyboard.KEY_SPACE)==true&&this.cooldownTimer<=0) {
 		sfxFire.play();
 		this.cooldownTimer = 0.3;
+		score = score + 5;
 	}
 	
 	}
